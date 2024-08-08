@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { categories } from "../assets/MockData";
 import { mackdata } from "../assets/MockData";
 // import { Images } from "../assets/Assets";
-import { Images } from "../assets/Assets";
 import InfoSection from "../Components/InfoSection";
 import CategorySection from "../Components/CategorySection";
 import { setProducts } from "../redux/ProductSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Mackdata_image } from "../assets/Assets";
 import ProductCart from "../Components/ProductCart";
+import Shop from "./Shop";
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
@@ -16,6 +17,7 @@ const Home = () => {
     dispatch(setProducts(mackdata));
   }, []);
   return (
+    <div>
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
         <div className="w-full md:w-3/12 ">
@@ -33,7 +35,7 @@ const Home = () => {
         </div>
 
         <div className="w-full md:w-9/12 md:mt-0 h-96 relative">
-          <img src={Images.HeroImage} alt="" className="h-full w-full" />
+          <img src={Mackdata_image.HeroImage} alt="" className="h-full w-full" />
           <div className="absolute top-16 left-8">
             <p className="text-gray-600 mb-4">Code with Muneeb</p>
             <h2 className="text-3xl font-bold  ">WELCOME TO E-SHOP</h2>
@@ -56,6 +58,9 @@ const Home = () => {
           ))}
         </div>
       </div>
+    </div>
+    <Shop/>
+
     </div>
   );
 };
