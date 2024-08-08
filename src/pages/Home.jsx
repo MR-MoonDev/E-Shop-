@@ -1,5 +1,6 @@
 import React from "react";
 import { categories } from "../MockData";
+// import { Images } from "../assets/Assets";
 import { Images } from "../assets/Assets";
 const Home = () => {
   return (
