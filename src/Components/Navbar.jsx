@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Icons } from "../Icons/Icon";
+import { Nav_Icons } from "../Icons/Nav_Icon";
+// import { Icons } from "../Icons/Icon";
 
 const Navbar = () => {
   return (
@@ -12,16 +13,16 @@ const Navbar = () => {
         <div className="relative flex-1  mx-4">
           <form>
             <input className="w-full border py-2 px-4" type="text" placeholder="search product" />
-            <Icons.Search className="absolute top-3 right-3 text-red-500 " />
+            <Nav_Icons.Search className="absolute top-3 right-3 text-red-500 " />
           </form>
         </div>
         <div className="flex flex-center space-x-4">
           <Link to="/cart">
-            <Icons.Shopping />
+            <Nav_Icons.Shopping />
           </Link>
           <button className="hidden md:block">Login | Register</button>
           <button className="block md:hidden">
-            <Icons.User />
+            <Nav_Icons.User />
           </button>
         </div> 
       </div>

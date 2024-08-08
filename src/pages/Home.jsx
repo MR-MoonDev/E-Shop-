@@ -2,6 +2,7 @@ import React from "react";
 import { categories } from "../MockData";
 // import { Images } from "../assets/Assets";
 import { Images } from "../assets/Assets";
+import InfoSection from "../Components/InfoSection";
 const Home = () => {
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
@@ -34,6 +35,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <InfoSection/>
     </div>
   );
 };
