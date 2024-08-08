@@ -1,10 +1,20 @@
-import React from "react";
-import { categories } from "../MockData";
+import React, { useEffect } from "react";
+import { categories } from "../assets/MockData";
+import { mackdata } from "../assets/MockData";
 // import { Images } from "../assets/Assets";
 import { Images } from "../assets/Assets";
 import InfoSection from "../Components/InfoSection";
 import CategorySection from "../Components/CategorySection";
+import { setProducts } from "../redux/ProductSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import ProductCart from "../Components/ProductCart";
 const Home = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product);
+  useEffect(() => {
+    dispatch(setProducts(mackdata));
+  }, []);
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
@@ -36,8 +46,16 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <InfoSection/>
-      <CategorySection/>
+      <InfoSection />
+      <CategorySection />
+      <div className="container mx-auto py-12 ">
+        <h2 className="text-2xl font-bold mb-6 text-center ">Top products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {products.products.slice(0, 5).map((product, index) => (
+            <ProductCart product={product} key={index} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
