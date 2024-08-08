@@ -42,7 +42,7 @@ const Home = () => {
             <p className="text-xl mt-2.5 font-bold text-gray-800">
               MILLIONS+ PRODUCTS
             </p>
-            <button className="bg-red-600 px-8 py-1.5 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
+            <button className="bg-red-600 px-8 py-1.5 rounded-sm text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
               Shop Now
             </button>
           </div>
@@ -60,7 +60,7 @@ const Home = () => {
       </div>
     </div>
     <Shop/>
-
+   
     </div>
   );
 };
