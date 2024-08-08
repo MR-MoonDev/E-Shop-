@@ -5,8 +5,9 @@ import Cap from "./images/Cap.jpg";
 import Emptycart from "./images/Emptycart.jpg";
 import HeroImage from "./images/HeroImage.jpg";
 import Headphone from "./images/Headphone.jpg";
-import Kid from "./images/Kid.jpg";
-import man from "./images/man.jpg";
+import women from "./images/Catogery_image/women.jpg";
+import Kid from "./images/Catogery_image/Kid.jpg";
+import man from "./images/Catogery_image/man.jpg";
 import Not_found from "./images/Not_found.jpg";
 import Purse from "./images/Purse.jpg";
 
@@ -18,9 +19,9 @@ export const Images = {
   Emptycart: Emptycart,
   HeroImage:HeroImage,
   Headphone: Headphone,
+  Not_found: Not_found,
+  Purse:Purse,
   Kid: Kid,
   man: man,
-  Not_found: Not_found,
-  Purse:Purse
-
+  women:women
 };
