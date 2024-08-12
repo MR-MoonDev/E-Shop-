@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 const ChangeAddress = ({ setAddress, setIsModalOpen }) => {
   const [newaddress, newsetaddress] = useState('');
+  const onClose=()=>{
+         setAddress(newaddress)
+         setIsModalOpen(false)
+  }
   return (
     <div>
       <input
@@ -18,7 +22,7 @@ const ChangeAddress = ({ setAddress, setIsModalOpen }) => {
         </button>
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded"
-          onClick={() => setAddress(newaddress)}
+          onClick={onClose}
         >
           Save Address
         </button>
