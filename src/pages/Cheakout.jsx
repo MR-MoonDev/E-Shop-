@@ -4,28 +4,31 @@ import { FaAngleDown } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Cheakout = ({setOrder}) => {
+const Cheakout = ({ setOrderfuntion }) => {
   const [billingToggle, setbillingToggle] = useState(true);
   const [ShippingToggle, setShippingToggle] = useState(true);
   const [PaymentToggle, setPaymentToggle] = useState(true);
   const [PaymentMethod, setPaymentMehod] = useState("Cash on delivery");
-  const [ShippingInfo,setShippingInfo] = useState({
-    address:' ',
-    city:' ',
-    zip:' '
-  })
-  const cart = useSelector((state) => state.cart);
+  const [shippingInfo, setshippingInfo] = useState({
+    address: "",
+    city: "",
+    zip: "",
+    name:"ss"
+  });
   const navigate = useNavigate();
-  const handleOrder=()=>{ 
-    const newOrder = {
-      products: cart.products,
-      orderNumber:"12334",
-      ShippingInformation:ShippingInfo,
-      totalPrice: cart.totalPrice
-    }
-    setOrder(newOrder)
-    navigate('/order-confirmation')
+
+  const handleOrder = ()=>{
+       const newOrder = {
+        products:cart.products,
+        orderNumber:"12344",
+        shippingInformation:shippingInfo,
+        totalPrice:cart.totalPrice
+       }
+       setOrderfuntion(newOrder)
+       navigate('/order-confirmation')
   }
+  const cart = useSelector((state) => state.cart);
+  
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       <h3 className="text-2xl font-semibold mb-4"> CHECKOUT</h3>
@@ -92,15 +95,18 @@ const Cheakout = ({setOrder}) => {
             </div>
             <div className={`space-y-4 ${ShippingToggle ? "" : "hidden"}`}>
               <div>
-                <label className="block text-gray-700">
-                  Address
-                </label>
+                <label className="block text-gray-700">Address</label>
                 <input
                   type="text"
-                  name="name"
+                  name="address"
                   placeholder="Enter Address"
                   className="w-full px-3 py-2 border"
-                  onChange={(e)=>setShippingInfo({...ShippingInfo,address:e.target.value})}
+                  onChange={(e) =>
+                    setshippingInfo({
+                      ...shippingInfo,
+                      address: e.target.value,
+                    })
+                  }
                 />
               </div>
               <div>
@@ -108,12 +114,13 @@ const Cheakout = ({setOrder}) => {
                   City
                 </label>
                 <input
-                  type="email"
-                  name="name"
+                  type="text"
+                  name="city"
                   placeholder="Enter City Name"
                   className="w-full px-3 py-2 border"
-                  onChange={(e)=>setShippingInfo({...ShippingInfo,city:e.target.value})}
-
+                  onChange={(e) =>
+                    setshippingInfo({ ...shippingInfo, city: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -122,11 +129,12 @@ const Cheakout = ({setOrder}) => {
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="zip"
                   placeholder="Enter Zip Code"
                   className="w-full px-3 py-2 border"
-                  onChange={(e)=>setShippingInfo({...ShippingInfo,zip:e.target.value})}
-
+                  onChange={(e) =>
+                    setshippingInfo({ ...shippingInfo, zip: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -234,10 +242,13 @@ const Cheakout = ({setOrder}) => {
           <h3 className="text-lg font-semibold mb-4">ORDER SUMMARY</h3>
           <div className="space-y-4">
             {cart.products.map((product) => (
-              <div key={product.id} 
-              className="flex justify-between">
+              <div key={product.id} className="flex justify-between">
                 <div className="flex items-center ">
-                  <img src={product.image} alt={product.name} className="w-16 h-16 object-contain rounded"/>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-16 h-16 object-contain rounded"
+                  />
                   <div className="ml-4">
                     <h4 className="text-md font-semibold ">{product.name}</h4>
                     <p className="text-gray-600">
@@ -246,19 +257,23 @@ const Cheakout = ({setOrder}) => {
                   </div>
                 </div>
                 <div className="text-gray-800">
-                   ${product.price * product.quantity}
+                  ${product.price * product.quantity}
                 </div>
               </div>
             ))}
           </div>
           <div className="mt-4 border-t pt-4">
             <div className="flex justify-between">
-                <span>Total Price:</span>
-                <span className="font-semibold">${cart.totalPrice.toFixed(2)}</span>
+              <span>Total Price:</span>
+              <span className="font-semibold">
+                ${cart.totalPrice.toFixed(2)}
+              </span>
             </div>
           </div>
-          <button className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800"
-           onClick={handleOrder}>place Order</button>
+          <button className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800" 
+          onClick={handleOrder}>
+            Place Order
+          </button>
         </div>
       </div>
     </div>
