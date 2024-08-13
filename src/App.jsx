@@ -9,9 +9,7 @@ import Cheakout from "./pages/Cheakout";
 import Order from "./pages/Order";
 export default function App() {
   const [order,setOrder]=useState(null);  
-  console.log("order:"+order)
   return (
-
     <BrowserRouter>
       <Navbar />
       <Routes>

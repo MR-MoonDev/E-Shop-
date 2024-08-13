@@ -13,22 +13,21 @@ const Cheakout = ({ setOrderfuntion }) => {
     address: "",
     city: "",
     zip: "",
-    name:"ss"
   });
   const navigate = useNavigate();
 
-  const handleOrder = ()=>{
-       const newOrder = {
-        products:cart.products,
-        orderNumber:"12344",
-        shippingInformation:shippingInfo,
-        totalPrice:cart.totalPrice
-       }
-       setOrderfuntion(newOrder)
-       navigate('/order-confirmation')
-  }
+  const handleOrder = () => {
+    const newOrder = {
+      products: cart.products,
+      orderNumber: "12344",
+      shippingInformation: shippingInfo,
+      totalPrice: cart.totalPrice,
+    };
+    setOrderfuntion(newOrder);
+    navigate("/order-confirmation");
+  };
   const cart = useSelector((state) => state.cart);
-  
+
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       <h3 className="text-2xl font-semibold mb-4"> CHECKOUT</h3>
@@ -270,8 +269,10 @@ const Cheakout = ({ setOrderfuntion }) => {
               </span>
             </div>
           </div>
-          <button className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800" 
-          onClick={handleOrder}>
+          <button
+            className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800"
+            onClick={handleOrder}
+          >
             Place Order
           </button>
         </div>
