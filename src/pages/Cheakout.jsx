@@ -2,13 +2,30 @@ import React, { useState } from "react";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Cheakout = () => {
+const Cheakout = ({setOrder}) => {
   const [billingToggle, setbillingToggle] = useState(true);
   const [ShippingToggle, setShippingToggle] = useState(true);
   const [PaymentToggle, setPaymentToggle] = useState(true);
   const [PaymentMethod, setPaymentMehod] = useState("Cash on delivery");
+  const [ShippingInfo,setShippingInfo] = useState({
+    address:' ',
+    city:' ',
+    zip:' '
+  })
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const handleOrder=()=>{ 
+    const newOrder = {
+      products: cart.products,
+      orderNumber:"12334",
+      ShippingInformation:ShippingInfo,
+      totalPrice: cart.totalPrice
+    }
+    setOrder(newOrder)
+    navigate('/order-confirmation')
+  }
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       <h3 className="text-2xl font-semibold mb-4"> CHECKOUT</h3>
@@ -75,7 +92,7 @@ const Cheakout = () => {
             </div>
             <div className={`space-y-4 ${ShippingToggle ? "" : "hidden"}`}>
               <div>
-                <label htmlFor="" className="block text-gray-700">
+                <label className="block text-gray-700">
                   Address
                 </label>
                 <input
@@ -83,6 +100,7 @@ const Cheakout = () => {
                   name="name"
                   placeholder="Enter Address"
                   className="w-full px-3 py-2 border"
+                  onChange={(e)=>setShippingInfo({...ShippingInfo,address:e.target.value})}
                 />
               </div>
               <div>
@@ -94,6 +112,8 @@ const Cheakout = () => {
                   name="name"
                   placeholder="Enter City Name"
                   className="w-full px-3 py-2 border"
+                  onChange={(e)=>setShippingInfo({...ShippingInfo,city:e.target.value})}
+
                 />
               </div>
               <div>
@@ -105,6 +125,8 @@ const Cheakout = () => {
                   name="name"
                   placeholder="Enter Zip Code"
                   className="w-full px-3 py-2 border"
+                  onChange={(e)=>setShippingInfo({...ShippingInfo,zip:e.target.value})}
+
                 />
               </div>
             </div>
@@ -235,7 +257,8 @@ const Cheakout = () => {
                 <span className="font-semibold">${cart.totalPrice.toFixed(2)}</span>
             </div>
           </div>
-          <button className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800">place Order</button>
+          <button className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800"
+           onClick={handleOrder}>place Order</button>
         </div>
       </div>
     </div>
