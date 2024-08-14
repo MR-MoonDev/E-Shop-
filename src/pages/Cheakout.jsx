@@ -241,25 +241,45 @@ const Cheakout = ({ setOrderfuntion }) => {
           <h3 className="text-lg font-semibold mb-4">ORDER SUMMARY</h3>
           <div className="space-y-4">
             {cart.products.map((product) => (
-              <div key={product.id} className="flex justify-between">
-                <div className="flex items-center ">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-16 h-16 object-contain rounded"
-                  />
-                  <div className="ml-4">
-                    <h4 className="text-md font-semibold ">{product.name}</h4>
-                    <p className="text-gray-600">
-                      ${product.price} x {product.quantity}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-gray-800">
-                  ${product.price * product.quantity}
-                </div>
-              </div>
-            ))}
+              // <div key={product.id} className="flex justify-between">
+              //   <div className="flex items-center ">
+              //     <img
+              //       src={product.image}
+              //       alt={product.name}
+              //       className="w-16 h-16 object-contain rounded"
+              //     />
+              //     <div className="ml-4">
+              //       <h4 className="text-md font-semibold ">{product.name}</h4>
+              //       <p className="text-gray-600">
+              //         ${product.price} x {product.quantity}
+              //       </p>
+              //     </div>
+              //   </div>
+              //   <div className="text-gray-800">
+              //     ${product.price * product.quantity}
+              //   </div>
+              // </div>
+              <div key={product.id} className="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-start">
+  <div className="flex items-center w-full sm:w-auto">
+    <img
+      src={product.image}
+      alt={product.name}
+      className="w-16 h-16 object-contain rounded"
+    />
+    <div className="ml-4 flex flex-col text-center sm:text-left">
+      <h4 className="text-md font-semibold mb-1">{product.name}</h4>
+      <p className="text-gray-600">
+        ${product.price} x {product.quantity}
+      </p>
+    </div>
+  </div>
+  <div className="text-gray-800 mt-2 sm:mt-0 sm:ml-auto">
+    ${product.price * product.quantity}
+  </div>
+</div>
+
+            )
+            )}
           </div>
           <div className="mt-4 border-t pt-4">
             <div className="flex justify-between">

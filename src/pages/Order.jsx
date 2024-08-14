@@ -33,7 +33,9 @@ const Order = ({ order }) => {
         <div className="mt-4 flex justify-between">
           <span>Total Price</span>
           <span className="font-semibold">
-            ${(order?.totalprice ?? 0).toFixed(2)}
+            ${(order?.totalPrice ?? 0).toFixed(2)}
+            {/* ${order.totalPrice.toFixed(2)} */}
+
           </span>
         </div>
       </div>

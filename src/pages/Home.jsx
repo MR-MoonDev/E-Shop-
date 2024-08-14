@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Mackdata_image } from "../assets/Assets";
 import ProductCart from "../Components/ProductCart";
+import { useNavigate } from 'react-router-dom';
+
 import Shop from "./Shop";
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(setProducts(mackdata));
   }, []);
+  const navigate = useNavigate();
+
+  const goToShop = () => {
+    navigate('/shop');
+  };
+
   return (
     <div>
       <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
@@ -48,7 +56,8 @@ const Home = () => {
                 MILLIONS+ PRODUCTS
               </p>
               <button className="bg-red-600 px-8 py-1.5 rounded-sm text-white mt-4
-               hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
+               hover:bg-red-700 transform transition-transform duration-300 hover:scale-105"
+               onClick={goToShop}>
                 Shop Now
               </button>
             </div>
