@@ -43,15 +43,15 @@ const Home = () => {
               ))}
             </ul>
           </div>
-          <div className="w-full md:w-9/12 md:mt-0 h-96 relative">
+          <div className="w-full md:w-9/12 mt-8 md:mt-0  h-96 relative">
             <img
               src={Mackdata_image.HeroImage}
               alt=""
-              className="h-full w-full"
+              className="h-full w-full "
             />
             <div className="absolute top-16 left-8">
-              <p className="text-gray-600 mb-4">Code with Muneeb</p>
-              <h2 className="text-3xl font-bold  ">WELCOME TO E-SHOP</h2>
+              <p className="text-gray-600 mb-4 ">Code with Muneeb</p>
+              <h2 className="text-3xl font-bold  ">WELCOME TO ShopNest</h2>
               <p className="text-xl mt-2.5 font-bold text-gray-800">
                 MILLIONS+ PRODUCTS
               </p>

@@ -55,7 +55,8 @@ const Navbar = () => {
           <Link to="/cart" className="relative">
             <Nav_Icons.Shopping className="text-lg" />
             {products.length > 0 && (
-              <span className="absolute top-0 text-xs w-3 left-3 bg-red-600 rounded-full flex items-center justify-center text-white">
+              <span className="absolute top-0 text-xs w-3 left-3 bg-red-600 rounded-full
+               flex items-center justify-center text-white">
                 {products.length}
               </span>
             )}
@@ -78,7 +79,7 @@ const Navbar = () => {
         <Link to="/shop" className="hover:underline">
           Shope
         </Link>
-        <Link onClick={openContact} className="hover:underline hidden md:block">
+        <Link onClick={openContact} className="hover:underline ">
           Contact
         </Link>
         <Link to="/" className="hover:underline">
