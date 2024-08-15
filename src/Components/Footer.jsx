@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { footer_Icons } from '../Icons/Footer_Icons'
 import { Link } from 'react-router-dom'
+import Contact from './Contact';
+import Modal from './Modal';
 const Footer = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
+  const openContact = () => {
+    setIsContactOpen(true);
+  }; 
   return (
+    <>
     <footer className='bg-gray-800 text-white py-8 px-4 md:px-16 lg:px-24'>
       <div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8'>
         <div>
@@ -21,10 +29,10 @@ const Footer = () => {
                <Link to="/shop" className="hover:underline">Shop</Link>
             </li>
             <li>
-               <Link to="/contact" className="hover:underline">Contact</Link>
+               <Link to="/contact" className="hover:underline" onClick={openContact}>Contact</Link>
             </li>
             <li>
-               <Link to="/about" className="hover:underline">About</Link>
+               <Link to="/" className="hover:underline">About</Link>
             </li>
           </ul>
         </div>
@@ -33,11 +41,11 @@ const Footer = () => {
             Follow us
           </h4 >
           <div className='flex space-x-4 mt-4'>
-            <a href="" className='hover:text-gray-400'><footer_Icons.facebook/></a>
-            <a href="" className='hover:text-gray-400'><footer_Icons.instagram/></a>
-            <a href="" className='hover:text-gray-400'><footer_Icons.gitHub/></a>
-            <a href="" className='hover:text-gray-400'><footer_Icons.Linkedin/></a>
-            <a href="" className='hover:text-gray-400'><footer_Icons.twitter/></a>
+            <a href="https://www.facebook.com/muneeb.siddiqui.9400" className='hover:text-gray-400'><footer_Icons.facebook/></a>
+            <a href="https://www.instagram.com/programmer_side/?igsh=MTdkcDBhbGhrdzAwdA%3D%3D" className='hover:text-gray-400'><footer_Icons.instagram/></a>
+            <a href="https://github.com/MR-MoonDev" className='hover:text-gray-400'><footer_Icons.gitHub/></a>
+            <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target='_blank' className='hover:text-gray-400'><footer_Icons.Linkedin/></a>
+            {/* <a href="" className='hover:text-gray-400'><footer_Icons.twitter/></a> */}
           </div>
           <form className='flex items-center justify-center mt-8' >
             <input type="email" placeholder='Enter E-mail' className='w-full p-2 rounded-l-lg bg-gray-600 border border-gray-500' />
@@ -55,6 +63,10 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    <Modal IsModalOpen={isContactOpen} setIsModalOpen={setIsContactOpen}>
+        <Contact />
+      </Modal>
+    </>
   )
 }
 

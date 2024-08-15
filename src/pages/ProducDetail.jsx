@@ -8,7 +8,7 @@ const ProducDetail = () => {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
   const [product, setProduct] = useState();
-  
+
   useEffect(() => {
     const newProduct = products.find((product) => product.id === parseInt(id));
     setProduct(newProduct);

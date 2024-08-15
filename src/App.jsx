@@ -17,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/Shop" element={<Shop/>}></Route>
+        {/* <Route path="/about" element={<Footer/>}></Route> */}
         <Route path="/cart" element={<Cart/>}></Route>
         <Route path="/cheakout" element={<Cheakout setOrderfuntion={(orderToAdd)=>{setOrder(orderToAdd)}}/>}></Route>
         <Route path="/order-confirmation" element={<Order order={order}/>}></Route>

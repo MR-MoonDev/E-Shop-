@@ -13,6 +13,15 @@ import shirt from "./images/MockData_images/shirt.jpg";
 import watch from "./images/MockData_images/watch.jpg";
 import Robot from "./images/MockData_images/Robot.jpg";
 import sliper from "./images/MockData_images/sliper.jpg";
+import Ac from "./images/MockData_images/Ac.jpg";
+import Bottle from "./images/MockData_images/Bottle.jpg";
+import Cup from "./images/MockData_images/Cup.jpg";
+import DegitalWatch from "./images/MockData_images/Degitalwatch.jpg";
+import DinnerSet from "./images/MockData_images/DinnerSet.jpg";
+import LadiesWatch from "./images/MockData_images/LadiesWatch.jpg";
+import laptop from "./images/MockData_images/laptop.jpg";
+import Mobile from "./images/MockData_images/Mobile.jpg";
+import Ups from "./images/MockData_images/Ups.jpg";
 
   // category images
 
@@ -43,5 +52,14 @@ export const Mackdata_image = {
   shirt:shirt,
   watch:watch,
   Robot:Robot,
-  sliper:sliper
+  sliper:sliper,
+  Ac:Ac,
+Bottle:Bottle,
+Cup:Cup,
+DegitalWatch:DegitalWatch,
+DinnerSet:DinnerSet,
+LadiesWatch:LadiesWatch,
+laptop:laptop,
+Mobile:Mobile,
+Ups:Ups,
 };

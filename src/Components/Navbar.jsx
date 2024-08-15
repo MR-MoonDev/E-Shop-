@@ -5,32 +5,40 @@ import { useDispatch, useSelector } from "react-redux";
 import Registered from "./Registered";
 import Login from "./Login";
 import Modal from "./Modal";
+import Contact from "./Contact";
 import { setSearchTerm } from "../redux/ProductSlice";
 const Navbar = () => {
   const [isModelOpen, setisModelOpen] = useState(false);
   const [isLogin, setisLogin] = useState(true);
+  const [isContact, setisContact] = useState(false);
+  const [search, setsearch] = useState();
+
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const openSingUp=()=>{
-    setisLogin(false)
-    setisModelOpen(true)
-  }
-  const openLogin=()=>{
-    setisLogin(true)
-    setisModelOpen(true)
-  }
-  const [search ,setsearch]=useState()
-  const handleSearch=(e)=>{
-     e.preventDefault();
-    dispatch(setSearchTerm(search))
-    navigate('/filter-data')
-  }
+
+  const openSingUp = () => {
+    setisLogin(false);
+    setisModelOpen(true);
+  };
+  const openLogin = () => {
+    setisLogin(true);
+    setisModelOpen(true);
+  };
+  const openContact = () => {
+    setisContact(true);
+    setisModelOpen(true);
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(setSearchTerm(search));
+    navigate("/filter-data");
+  };
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 md:px-16 lg:px-24 py-4 flex justify-between items-center">
         <div className="text-lg font-bold">
-          <Link to="/">e-shope</Link>
+          <Link to="/">ShopNest</Link>
         </div>
         <div className="relative flex-1  mx-4">
           <form onSubmit={handleSearch}>
@@ -38,7 +46,7 @@ const Navbar = () => {
               className="w-full border py-2 px-4"
               type="text"
               placeholder="search product"
-              onChange={(e)=>setsearch(e.target.value)}
+              onChange={(e) => setsearch(e.target.value)}
             />
             <Nav_Icons.Search className="absolute top-3 right-3 text-red-500 " />
           </form>
@@ -52,7 +60,12 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <button className="hidden md:block" onClick={()=>setisModelOpen(true)}>Login | Register</button>
+          <button
+            className="hidden md:block"
+            onClick={() => setisModelOpen(true)}
+          >
+            Login | Register
+          </button>
           <button className="block md:hidden">
             <Nav_Icons.User />
           </button>
@@ -65,7 +78,7 @@ const Navbar = () => {
         <Link to="/shop" className="hover:underline">
           Shope
         </Link>
-        <Link to="/" className="hover:underline">
+        <Link onClick={openContact} className="hover:underline hidden md:block">
           Contact
         </Link>
         <Link to="/" className="hover:underline">
@@ -73,7 +86,13 @@ const Navbar = () => {
         </Link>
       </div>
       <Modal IsModalOpen={isModelOpen} setIsModalOpen={setisModelOpen}>
-        {isLogin?<Login openSingUp={openSingUp}/>:<Registered openLogin={openLogin}/>}
+        {isContact ? (
+          <Contact />
+        ) : isLogin ? (
+          <Login openSingUp={openSingUp} />
+        ) : (
+          <Registered openLogin={openLogin} />
+        )}
       </Modal>
     </nav>
   );
