@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { addToCart } from "../redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import StarRating from "./StarRating";
 const ProductCart = ({ product }) => {
   const dispatch = useDispatch();
   const HandleAddtoCard =(e,product)=>{
@@ -25,11 +25,12 @@ const ProductCart = ({ product }) => {
         <p className="text-gray-500">${product.price}</p>
       </div>
       <div className="flex items-center mt-2">
+        {/* <FaStar className="text-yellow-500" />
         <FaStar className="text-yellow-500" />
         <FaStar className="text-yellow-500" />
         <FaStar className="text-yellow-500" />
-        <FaStar className="text-yellow-500" />
-        <FaStar className="text-gray-300" />
+        <FaStar className="text-gray-300" /> */}
+        <StarRating/>
       </div>
       <div
         className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8  
