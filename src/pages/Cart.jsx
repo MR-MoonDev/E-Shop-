@@ -10,85 +10,101 @@ import {
   IncreaseQunatity,
   removeFormCart,
 } from "../redux/CartSlice";
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [address, setAddress] = useState("main street, 0012");
   const [IsModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
       {cart.products.length > 0 ? (
         <div>
-          <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>  
-          <div className="flex flex-col md:flex-row justify-between space-x-10 mt-8">
+          <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>
+          <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-10">
             <div className="md:w-2/3">
-              <div className=" flex justify-between items-center border-b font-bold text-xs mb-4">
-                <p>PRODUCTS</p>
-                <div className="flex  space-x-8">
-                  <p>PRICE</p>
-                  <p>QUANTITY</p>
-                  <p>SUBTOTAL</p>
-                  <p>REMOVE</p>
-                </div>
-              </div>
-              <div>
-                {cart.products.map((product) => (
-                  <div
-                    key={product.id}
-                    className=" flex items-center justify-between p-3 border-b"
-                  >
-                    <div className="md:flex items-center space-x-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-16 h-16 object-contain rounded"
-                      />
-                      <div className="flex ml-4">
-                        <h3 className="text-lg font-semibold">
-                          {product.name}
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex space-x-12 items-center">
-                      <p>${product.price}</p>
-                      <div className="flex items-center justify-center border">
-                        <button
-                          className="text-xl font-bold px-1.5 border-r"
-                          onClick={() => dispatch(decreaseQunatity(product.id))}
-                        >
-                          -
-                        </button>
-                        <p className="text-xl px-2">{product.quantity}</p>
-                        <button
-                          className="text-xl px-1 border-1"
-                          onClick={() => dispatch(IncreaseQunatity(product.id))}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <p>${(product.quantity * product.price).toFixed(2)}</p>
-                      <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => dispatch(removeFormCart(product.id))}
-                      >
-                        <FaTrashAlt />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+              <div className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-200">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 px-4  text-center">PRODUCT</th>
+                      <th className="py-2 px-4 text-center">PRICE</th>
+                      <th className="py-2 px-4 text-center">QUANTITY</th>
+                      <th className="py-2 px-4 text-center">SUBTOTAL</th>
+                      <th className="py-2 px-4 text-center">REMOVE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.products.map((product) => (
+                      <tr key={product.id} className="border-b">
+                        <td className="py-2 px-4">
+                          <div className="flex items-center space-x-4">
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="w-16 h-16 object-contain rounded"
+                            />
+                            <span className="text-lg font-semibold">
+                              {product.name}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-2 px-4 text-center">
+                          ${product.price}
+                        </td>
+                        <td className="py-2 px-4 text-center">
+                          <div className="flex items-center border">
+                            <button
+                              className="text-xl font-bold px-2 py-1 border-r border-gray-300 flex-1"
+                              onClick={() =>
+                                dispatch(decreaseQunatity(product.id))
+                              }
+                            >
+                              -
+                            </button>
+                            <span className="text-xl px-3">
+                              {product.quantity}
+                            </span>
+                            <button
+                              className="text-xl font-bold px-2 py-1 border-l border-gray-300 flex-1"
+                              onClick={() =>
+                                dispatch(IncreaseQunatity(product.id))
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+
+                        <td className="py-2 px-4 text-center">
+                          ${(product.quantity * product.price).toFixed(2)}
+                        </td>
+                        <td className="py-2 px-4 text-center">
+                          <button
+                            className="text-red-500 hover:text-red-700"
+                            onClick={() => dispatch(removeFormCart(product.id))}
+                          >
+                            <FaTrashAlt />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
-            {/* cart totals */}
-            <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border md:ml-8">
+            {/* Cart totals */}
+            <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
               <h3 className="text-sm font-bold mb-5">CART TOTALS</h3>
               <div className="flex justify-between mb-5 border-b pb-1">
                 <span className="text-sm">TOTAL ITEMS:</span>
                 <span>{cart.totalQuantity}</span>
               </div>
-              <div className="mb-4 border-b pb-2">
-                <p>Shipping:</p>
-                <p className="ml-2">
+              <div className="mb-4 border-b  pb-2">
+                <p className="font-bold">Shipping:</p>
+                <p >
                   Shipping to:{" "}
                   <span className="text-xs font-bold">{address}</span>
                 </p>
@@ -100,12 +116,12 @@ const Cart = () => {
                 </button>
               </div>
               <div className="flex justify-between mb-4">
-                <span>Total Price:</span>
+                <span className="font-bold">Total Price:</span>
                 <span>${cart.totalPrice.toFixed(2)}</span>
               </div>
               <button
                 className="w-full bg-red-600 text-white py-2 hover:bg-red-800"
-                onClick={()=>navigate('/cheakout')}
+                onClick={() => navigate("/cheakout")}
               >
                 Proceed to Checkout
               </button>

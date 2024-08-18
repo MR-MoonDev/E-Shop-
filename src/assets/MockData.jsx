@@ -2,11 +2,13 @@ import { Mackdata_image } from "./Assets";
 
 export const categories=[
     "Electronics",
+    "Furniture",
+    "Home ",
+    "Electronics",
     "Fashion",
-    "Home & Kitchen",
-    "Beauty",
-    "Sports",
-    "Automotive",
+    "Kitchen",
+    "Sports & Outdoors",
+    "Beauty & Health"
 ];
 
 export const mackdata = [

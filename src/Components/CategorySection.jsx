@@ -16,7 +16,7 @@ const CategorySection = () => {
     },
   ];
   return (
-    <div className="container mx-auto grid grid-col-1 sm:grid-cols-3 gap-6 cursor-pointer">
+    <div className="container mt-4 mx-auto grid grid-col-1 sm:grid-cols-3 gap-6 cursor-pointer">
       {Category_image.map((items, index) => (
         <div
           key={index}

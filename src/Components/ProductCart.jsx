@@ -14,7 +14,7 @@ const ProductCart = ({ product }) => {
   }
   return (
     <Link to={`/product/${product.id}`}>
-    <div className="bg-white p-4 shadow rounded reative border transform transition duration-300 hover:scale-105">
+    <div className="bg-white hover:bg-slate-100 p-4 shadow rounded reative border transform transition duration-300 hover:scale-105">
       <div>
         <img
           src={product.image}

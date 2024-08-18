@@ -1,9 +1,10 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
-const Modal = ({ IsModalOpen, setIsModalOpen,children }) => {
+const Modal = ({ IsModalOpen, setIsModalOpen, children }) => {
   if (!IsModalOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
         <button
@@ -12,9 +13,10 @@ const Modal = ({ IsModalOpen, setIsModalOpen,children }) => {
         >
           &times;
         </button>
-       {children}
+        {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
