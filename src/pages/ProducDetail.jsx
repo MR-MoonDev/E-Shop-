@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaCarSide } from "react-icons/fa6";
 import { FaQuestion } from "react-icons/fa6";
-
+import { addToCart } from "../redux/CartSlice";
+import { useDispatch } from "react-redux";
 const ProducDetail = () => {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
@@ -14,6 +15,13 @@ const ProducDetail = () => {
     setProduct(newProduct);
   }, [id, products]);
 
+  const dispatch = useDispatch();
+  const HandleAddtoCard =(e,product)=>{
+   e.stopPropagation();
+   e.preventDefault();
+   dispatch(addToCart(product));
+   alert("product Added Succesfully")
+  }
   if (!product) return <div>Loading....</div>;
 
   return (
@@ -36,7 +44,7 @@ const ProducDetail = () => {
               min="1"
               className="border p-1 w-16"
             />
-            <button className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-700">
+            <button className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-700" onClick={(e)=>HandleAddtoCard(e, product)}>
               Add to Cart
             </button>
           </div>
