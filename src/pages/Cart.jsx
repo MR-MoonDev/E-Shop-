@@ -25,75 +25,70 @@ const Cart = () => {
           <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>
           <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-10">
             <div className="md:w-2/3">
-              <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="py-2 px-4  text-center">PRODUCT</th>
-                      <th className="py-2 px-4 text-center">PRICE</th>
-                      <th className="py-2 px-4 text-center">QUANTITY</th>
-                      <th className="py-2 px-4 text-center">SUBTOTAL</th>
-                      <th className="py-2 px-4 text-center">REMOVE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cart.products.map((product) => (
-                      <tr key={product.id} className="border-b">
-                        <td className="py-2 px-4">
-                          <div className="flex items-center space-x-4">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-16 h-16 object-contain rounded"
-                            />
-                            <span className="text-lg font-semibold">
-                              {product.name}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-2 px-4 text-center">
-                          ${product.price}
-                        </td>
-                        <td className="py-2 px-4 text-center">
-                          <div className="flex items-center border">
-                            <button
-                              className="text-xl font-bold px-2 py-1 border-r border-gray-300 flex-1"
-                              onClick={() =>
-                                dispatch(decreaseQunatity(product.id))
-                              }
-                            >
-                              -
-                            </button>
-                            <span className="text-xl px-3">
-                              {product.quantity}
-                            </span>
-                            <button
-                              className="text-xl font-bold px-2 py-1 border-l border-gray-300 flex-1"
-                              onClick={() =>
-                                dispatch(IncreaseQunatity(product.id))
-                              }
-                            >
-                              +
-                            </button>
-                          </div>
-                        </td>
+             <div className="overflow-x-auto">
+  <table className="min-w-full bg-white border border-gray-200">
+    <thead>
+      <tr className="border-b">
+        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">PRODUCT</th>
+        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">PRICE</th>
+        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">QUANTITY</th>
+        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">SUBTOTAL</th>
+        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">REMOVE</th>
+      </tr>
+    </thead>
+    <tbody>
+      {cart.products.map((product) => (
+        <tr key={product.id} className="border-b">
+          <td className="py-2 px-4">
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+  <img
+    src={product.image}
+    alt={product.name}
+    className="w-16 h-16 object-contain rounded"
+  />
+  <span className="text-lg font-semibold text-center sm:text-left">
+    {product.name}
+  </span>
+</div>
 
-                        <td className="py-2 px-4 text-center">
-                          ${(product.quantity * product.price).toFixed(2)}
-                        </td>
-                        <td className="py-2 px-4 text-center">
-                          <button
-                            className="text-red-500 hover:text-red-700"
-                            onClick={() => dispatch(removeFormCart(product.id))}
-                          >
-                            <FaTrashAlt />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          </td>
+          <td className="py-2 px-4 text-center text-sm sm:text-base">
+            ${product.price}
+          </td>
+          <td className="py-2 px-4 text-center text-sm sm:text-base">
+            <div className="flex items-center border">
+              <button
+                className="text-lg font-bold px-2 py-1 border-r border-gray-300 flex-1"
+                onClick={() => dispatch(decreaseQunatity(product.id))}
+              >
+                -
+              </button>
+              <span className="text-lg px-3">{product.quantity}</span>
+              <button
+                className="text-lg font-bold px-2 py-1 border-l border-gray-300 flex-1"
+                onClick={() => dispatch(IncreaseQunatity(product.id))}
+              >
+                +
+              </button>
+            </div>
+          </td>
+          <td className="py-2 px-4 text-center text-sm sm:text-base">
+            ${(product.quantity * product.price).toFixed(2)}
+          </td>
+          <td className="py-2 px-4 text-center text-sm sm:text-base">
+            <button
+              className="text-red-500 hover:text-red-700"
+              onClick={() => dispatch(removeFormCart(product.id))}
+            >
+              <FaTrashAlt />
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
             </div>
             {/* Cart totals */}
             <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">

@@ -25,7 +25,7 @@ const ProducDetail = () => {
   if (!product) return <div>Loading....</div>;
 
   return (
-    <div className="container mx-auto py-8 md:px-16 lg:px-24">
+    <div className="container p-8 mx-auto py-8 md:px-16 lg:px-24">
       <div className="flex flex-col md:flex-row gap-x-16">
         {/* Product image */}
         <div className="md:w-1/2 py-4 shadow-md md:px-8 h-96 flex justify-center">
@@ -63,7 +63,7 @@ const ProducDetail = () => {
         </div>
       </div>
       <div className="mt-8">
-        <h3 className="text-xl font-bold mb-2">Product Description</h3>
+        <h3 className="text-xl font-bold mb-2 ">Product Description</h3>
         <p>Product description will go here.</p>
       </div>
     </div>

@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isModelOpen, setisModelOpen] = useState(false);
   const [isLogin, setisLogin] = useState(true);
   const [search, setsearch] = useState("");
-  const [isContactOpen, setIsContactOpen] = useState(false); 
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Navbar = () => {
   };
 
   const openContactModal = () => {
-    setIsContactOpen(true); 
+    setIsContactOpen(true);
   };
 
   return (
@@ -44,24 +44,32 @@ const Navbar = () => {
         <div className="text-lg font-bold hover:text-red-600 transform transition-transform duration-300 hover:scale-105">
           <Link to="/">ShopNest</Link>
         </div>
-        <div className="relative flex-1 mx-4">
+        <div className="relative flex-1 mx-4 md:mx-2">
           <form onSubmit={handleSearch}>
             <input
-              className="w-full border py-2 px-4"
+              className="w-full border py-2 px-4 pr-10"
               type="text"
-              placeholder="search product"
-              value={search} 
+              placeholder="Search product"
+              value={search}
               onChange={(e) => setsearch(e.target.value)}
             />
-            <Nav_Icons.Search className="absolute top-3 right-3 text-red-500" />
+            <button
+              type="submit"
+              className="absolute top-1/2 transform -translate-y-1/2 right-3 text-red-500 md:right-2"
+            >
+              <Nav_Icons.Search />
+            </button>
           </form>
         </div>
+
         <div className="flex flex-center items-center space-x-4">
           <Link to="/cart" className="relative">
             <Nav_Icons.Shopping className="text-lg  transform transition-transform duration-300 hover:scale-105" />
             {products.length > 0 && (
-              <span className="absolute top-0 text-xs w-3 left-3 bg-red-600 rounded-full
-               flex items-center justify-center text-white">
+              <span
+                className="absolute top-0 text-xs w-3 left-3 bg-red-600 rounded-full
+               flex items-center justify-center text-white"
+              >
                 {products.length}
               </span>
             )}
@@ -72,7 +80,10 @@ const Navbar = () => {
           >
             Login | Register
           </button>
-          <button className="block md:hidden">
+          <button
+            className="block md:hidden"
+            onClick={() => setisModelOpen(true)}
+          >
             <Nav_Icons.User />
           </button>
         </div>
@@ -84,7 +95,10 @@ const Navbar = () => {
         <Link to="/shop" className="hover:underline hover:text-red-600">
           Shope
         </Link>
-        <button onClick={openContactModal} className="hover:underline hover:text-red-600">
+        <button
+          onClick={openContactModal}
+          className="hover:underline hover:text-red-600"
+        >
           Contact
         </button>
         <Link to="/about" className="hover:underline hover:text-red-600">
@@ -92,7 +106,11 @@ const Navbar = () => {
         </Link>
       </div>
       <Modal IsModalOpen={isModelOpen} setIsModalOpen={setisModelOpen}>
-        {isLogin ? <Login openSingUp={openSingUp} /> : <Registered openLogin={openLogin} />}
+        {isLogin ? (
+          <Login openSingUp={openSingUp} />
+        ) : (
+          <Registered openLogin={openLogin} />
+        )}
       </Modal>
       <Modal IsModalOpen={isContactOpen} setIsModalOpen={setIsContactOpen}>
         <Contact />
