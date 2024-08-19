@@ -17,7 +17,6 @@ const Order = ({ order }) => {
           <h4 className="text-md font-semibold mb-2">Shipping Information</h4>
           <p>{order?.shippingInformation.address}</p>
           <p>{order?.shippingInformation.city}</p>
-          <p>{order?.shippingInformation.address}</p>
         </div>
         <div className="mt-4">
           <h4 className="text-md font-semibold mb-2">Items Ordered</h4>

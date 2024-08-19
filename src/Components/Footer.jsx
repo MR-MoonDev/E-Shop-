@@ -3,10 +3,23 @@ import { footer_Icons } from "../Icons/Footer_Icons";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import Contact from "./Contact";
+
 const Footer = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [email, setEmail] = useState("");
+
   const openContactModal = () => {
     setIsContactOpen(true);
+  };
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      alert("Subscribed successfully!");
+      setEmail(""); // Clear the input field after successful subscription
+    } else {
+      alert("Please enter a valid email address.");
+    }
   };
 
   return (
@@ -16,11 +29,11 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold">ShopNest</h3>
             <p className="mt-4">
-              your one step fot all your needs. shop with use and experince the
+              Your one step for all your needs. Shop with us and experience the
               best online shopping experiences.
             </p>
           </div>
-          <div className="flex flex-col md:items-center ">
+          <div className="flex flex-col md:items-center">
             <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="mt-4 space-y-2">
               <li>
@@ -74,13 +87,18 @@ const Footer = () => {
                 <footer_Icons.Linkedin />
               </a>
             </div>
-            <form className="flex items-center justify-center mt-8">
+            <form className="flex items-center justify-center mt-8" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 placeholder="Enter E-mail"
                 className="w-full p-2 rounded-l-lg bg-gray-600 border border-gray-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <button className="bg-red-600 text-white px-4 py-2 rounded-r-lg border border-gray-500">
+              <button
+                type="submit"
+                className="bg-red-600 text-white px-4 py-2 rounded-r-lg border border-gray-500"
+              >
                 Subscribe
               </button>
             </form>
@@ -88,10 +106,10 @@ const Footer = () => {
         </div>
         <div className="mt-8 border-t border-gray-700 pt-4">
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; 2024 e-shop all right reserved.</p>
+            <p>&copy; 2024 e-shop all rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="" className="hover:underline">
-                privacy policy
+                Privacy Policy
               </a>
               <a href="" className="hover:underline">
                 Terms and Conditions
