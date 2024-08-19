@@ -1,5 +1,4 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
 import { addToCart } from "../redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -25,11 +24,7 @@ const ProductCart = ({ product }) => {
         <p className="text-gray-500">${product.price}</p>
       </div>
       <div className="flex items-center mt-2">
-        {/* <FaStar className="text-yellow-500" />
-        <FaStar className="text-yellow-500" />
-        <FaStar className="text-yellow-500" />
-        <FaStar className="text-yellow-500" />
-        <FaStar className="text-gray-300" /> */}
+       
         <StarRating/>
       </div>
       <div
