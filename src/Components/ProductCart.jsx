@@ -23,10 +23,14 @@ const ProductCart = ({ product }) => {
             alt="product not found"
             className="w-full h-48 object-contain mb-4"
           />
-          <h3 className="text-lg font-semibold text-center">{product.name}</h3>
-          <p className="text-gray-500 text-center">${product.price}</p>
+          <div className="flex items-start flex-col gap-2">
+            <h3 className="text-lg font-semibold text-center">
+              {product.name}
+            </h3>
+            <p className="text-gray-500 text-center">${product.price}</p>
+          </div>
         </div>
-        <div className="flex flex-col gap-2 lg:flex-row items-center justify-between mt-2">
+        {/* <div className="flex flex-col gap-2 lg:flex-row items-center justify-between mt-2">
           <div className="flex items-center">
             <StarRating />
           </div>
@@ -38,6 +42,24 @@ const ProductCart = ({ product }) => {
           >
             <span className="group-hover:hidden">+</span>
             <span className="hidden group-hover:block">Add to cart</span>
+          </div>
+        </div> */}
+        <div className="flex justify-center items-center mt-4 flex-wrap   gap-4 ">
+          <div>
+            <StarRating />
+          </div>
+          <div
+            className="flex items-center justify-center  h-8 p-1 bg-red-600 group text-white text-sm
+             rounded-full
+           hover:bg-red-700
+            transition-all duration-300"
+          >
+            <div
+              onClick={(e) => HandleAddtoCard(e, product)}
+              className="text-sm p-2"
+            >
+              Add to cart
+            </div>
           </div>
         </div>
       </div>
