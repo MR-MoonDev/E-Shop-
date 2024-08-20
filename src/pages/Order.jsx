@@ -15,8 +15,8 @@ const Order = ({ order }) => {
         <p>Order Number:{order?.orderNumber}</p>
         <div className="mt-4">
           <h4 className="text-md font-semibold mb-2">Shipping Information</h4>
-          <p>{order?.shippingInformation.address}</p>
-          <p>{order?.shippingInformation.city}</p>
+          <p>Street:{order?.shippingInformation.address}</p>
+          <p>City:{order?.shippingInformation.city}</p>
         </div>
         <div className="mt-4">
           <h4 className="text-md font-semibold mb-2">Items Ordered</h4>
@@ -33,7 +33,6 @@ const Order = ({ order }) => {
           <span>Total Price</span>
           <span className="font-semibold">
             ${(order?.totalPrice ?? 0).toFixed(2)}
-            {/* ${order.totalPrice.toFixed(2)} */}
 
           </span>
         </div>

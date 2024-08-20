@@ -90,7 +90,7 @@ const Cheakout = ({ setOrderfuntion }) => {
               <div>
                 <label htmlFor="phone" className="block text-gray-700">Phone</label>
                 <input
-                  type="text"
+                  type="number"
                   id="phone"
                   placeholder="Enter Phone #"
                   className="w-full px-3 py-2 border"
@@ -142,7 +142,7 @@ const Cheakout = ({ setOrderfuntion }) => {
               <div>
                 <label htmlFor="zip" className="block text-gray-700">Zip Code</label>
                 <input
-                  type="text"
+                  type="number"
                   id="zip"
                   placeholder="Enter Zip Code"
                   className="w-full px-3 py-2 border"

@@ -25,81 +25,96 @@ const Cart = () => {
           <h3 className="text-2xl font-semibold mb-4">SHOPPING CART</h3>
           <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-10">
             <div className="md:w-2/3">
-             <div className="overflow-x-auto">
-  <table className="min-w-full bg-white border border-gray-200">
-    <thead>
-      <tr className="border-b">
-        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">PRODUCT</th>
-        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">PRICE</th>
-        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">QUANTITY</th>
-        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">SUBTOTAL</th>
-        <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">REMOVE</th>
-      </tr>
-    </thead>
-    <tbody>
-      {cart.products.map((product) => (
-        <tr key={product.id} className="border-b">
-          <td className="py-2 px-4">
-          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
-  <img
-    src={product.image}
-    alt={product.name}
-    className="w-16 h-16 object-contain rounded"
-  />
-  <span className="text-lg font-semibold text-center sm:text-left">
-    {product.name}
-  </span>
-</div>
-
-          </td>
-          <td className="py-2 px-4 text-center text-sm sm:text-base">
-            ${product.price}
-          </td>
-          <td className="py-2 px-4 text-center text-sm sm:text-base">
-            <div className="flex items-center border">
-              <button
-                className="text-lg font-bold px-2 py-1 border-r border-gray-300 flex-1"
-                onClick={() => dispatch(decreaseQunatity(product.id))}
-              >
-                -
-              </button>
-              <span className="text-lg px-3">{product.quantity}</span>
-              <button
-                className="text-lg font-bold px-2 py-1 border-l border-gray-300 flex-1"
-                onClick={() => dispatch(IncreaseQunatity(product.id))}
-              >
-                +
-              </button>
-            </div>
-          </td>
-          <td className="py-2 px-4 text-center text-sm sm:text-base">
-            ${(product.quantity * product.price).toFixed(2)}
-          </td>
-          <td className="py-2 px-4 text-center text-sm sm:text-base">
-            <button
-              className="text-red-500 hover:text-red-700"
-              onClick={() => dispatch(removeFormCart(product.id))}
-            >
-              <FaTrashAlt />
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
+              <div className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-200">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">
+                        PRODUCT
+                      </th>
+                      <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">
+                        PRICE
+                      </th>
+                      <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">
+                        QUANTITY
+                      </th>
+                      <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">
+                        SUBTOTAL
+                      </th>
+                      <th className="py-2 px-4 text-center text-xs sm:text-sm md:text-base">
+                        REMOVE
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.products.map((product) => (
+                      <tr key={product.id} className="border-b">
+                        <td className="py-2 px-4">
+                          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="w-16 h-16 object-contain rounded"
+                            />
+                            <span className="text-lg font-semibold text-center sm:text-left">
+                              {product.name}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-2 px-4 text-center text-sm sm:text-base">
+                          ${product.price}
+                        </td>
+                        <td className="py-2 px-4 text-center text-sm sm:text-base">
+                          <div className="flex items-center border">
+                            <button
+                              className="text-lg font-bold px-2 py-1 border-r border-gray-300 flex-1"
+                              onClick={() =>
+                                dispatch(decreaseQunatity(product.id))
+                              }
+                            >
+                              -
+                            </button>
+                            <span className="text-lg px-3">
+                              {product.quantity}
+                            </span>
+                            <button
+                              className="text-lg font-bold px-2 py-1 border-l border-gray-300 flex-1"
+                              onClick={() =>
+                                dispatch(IncreaseQunatity(product.id))
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-2 px-4 text-center text-sm sm:text-base">
+                          ${(product.quantity * product.price).toFixed(2)}
+                        </td>
+                        <td className="py-2 px-4 text-center text-sm sm:text-base">
+                          <button
+                            className="text-red-500 hover:text-red-700"
+                            onClick={() => dispatch(removeFormCart(product.id))}
+                          >
+                            <FaTrashAlt />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
             {/* Cart totals */}
-            <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
+           
+            <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border overflow-y-auto">
               <h3 className="text-sm font-bold mb-5">CART TOTALS</h3>
               <div className="flex justify-between mb-5 border-b pb-1">
                 <span className="text-sm">TOTAL ITEMS:</span>
                 <span>{cart.totalQuantity}</span>
               </div>
-              <div className="mb-4 border-b  pb-2">
+              <div className="mb-4 border-b pb-2">
                 <p className="font-bold">Shipping:</p>
-                <p >
+                <p>
                   Shipping to:{" "}
                   <span className="text-xs font-bold">{address}</span>
                 </p>

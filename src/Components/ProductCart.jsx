@@ -49,17 +49,15 @@ const ProductCart = ({ product }) => {
             <StarRating />
           </div>
           <div
-            className="flex items-center justify-center  h-8 p-1 bg-red-600 group text-white text-sm
+            className="flex items-center justify-center  p-2 bg-red-600 group
+             text-white 
+             text-xs
              rounded-full
            hover:bg-red-700
             transition-all duration-300"
+            onClick={(e) => HandleAddtoCard(e, product)}
           >
-            <div
-              onClick={(e) => HandleAddtoCard(e, product)}
-              className="text-sm p-2"
-            >
-              Add to cart
-            </div>
+            Add to cart
           </div>
         </div>
       </div>
