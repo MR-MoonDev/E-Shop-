@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext"; // Adjust path as needed
 
 const Cheakout = ({ setOrderfuntion }) => {
+  const { theme } = useTheme(); // Get theme from context
+  const [isHoveredLogin,subscribe] = useState(false);
+
   const [billingToggle, setBillingToggle] = useState(false);
   const [shippingToggle, setShippingToggle] = useState(false);
   const [paymentToggle, setPaymentToggle] = useState(false);
@@ -18,7 +22,7 @@ const Cheakout = ({ setOrderfuntion }) => {
     email: "",
     phone: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
 
@@ -47,27 +51,38 @@ const Cheakout = ({ setOrderfuntion }) => {
   };
 
   return (
-    <div className="container mx-auto py-8 min-h-96 px-4 md:px-16 lg:px-24">
+    <div
+      className="mx-auto mt-4 px-8 md:px-16 p-8 lg:px-24"
+      style={{ backgroundColor: theme.backgroundColor, color: theme.textColor }}
+    >
       <h3 className="text-2xl font-semibold mb-4">CHECKOUT</h3>
       <div className="flex flex-col md:flex-row justify-between gap-6 mt-8">
         <div className="md:w-2/3">
           {/* Billing information */}
-          <div className="border p-2 mb-6">
+          <div
+            className="border p-2 mb-6"
+            style={{ borderColor: theme.borderColor }}
+          >
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between cursor-pointer"
               onClick={() => setBillingToggle(!billingToggle)}
             >
-              <h3 className="text-lg font-semibold mb-2">Billing Information</h3>
+              <h3 className="text-lg font-semibold mb-2">{`Billing Information`}</h3>
               {billingToggle ? <FaAngleDown /> : <FaAngleUp />}
             </div>
             <div className={`space-y-4 ${billingToggle ? "" : "hidden"}`}>
               <div>
-                <label htmlFor="name" className="block text-gray-700">Name</label>
+                <label htmlFor="name" className="block">{`Name`}</label>
                 <input
                   type="text"
                   id="name"
                   placeholder="Enter Name"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={billingInfo.name}
                   onChange={(e) =>
                     setBillingInfo({ ...billingInfo, name: e.target.value })
@@ -75,12 +90,17 @@ const Cheakout = ({ setOrderfuntion }) => {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-gray-700">E-mail</label>
+                <label htmlFor="email" className="block">{`E-mail`}</label>
                 <input
                   type="email"
                   id="email"
                   placeholder="Email Address"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={billingInfo.email}
                   onChange={(e) =>
                     setBillingInfo({ ...billingInfo, email: e.target.value })
@@ -88,12 +108,17 @@ const Cheakout = ({ setOrderfuntion }) => {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-gray-700">Phone</label>
+                <label htmlFor="phone" className="block">{`Phone`}</label>
                 <input
                   type="number"
                   id="phone"
                   placeholder="Enter Phone #"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={billingInfo.phone}
                   onChange={(e) =>
                     setBillingInfo({ ...billingInfo, phone: e.target.value })
@@ -104,35 +129,51 @@ const Cheakout = ({ setOrderfuntion }) => {
           </div>
 
           {/* Shipping information */}
-          <div className="border p-2 mb-6">
+          <div
+            className="border p-2 mb-6"
+            style={{ borderColor: theme.borderColor }}
+          >
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between cursor-pointer"
               onClick={() => setShippingToggle(!shippingToggle)}
             >
-              <h3 className="text-lg font-semibold mb-2">Shipping Information</h3>
+              <h3 className="text-lg font-semibold mb-2">{`Shipping Information`}</h3>
               {shippingToggle ? <FaAngleDown /> : <FaAngleUp />}
             </div>
             <div className={`space-y-4 ${shippingToggle ? "" : "hidden"}`}>
               <div>
-                <label htmlFor="address" className="block text-gray-700">Address</label>
+                <label htmlFor="address" className="block">{`Address`}</label>
                 <input
                   type="text"
                   id="address"
                   placeholder="Enter Address"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={shippingInfo.address}
                   onChange={(e) =>
-                    setShippingInfo({ ...shippingInfo, address: e.target.value })
+                    setShippingInfo({
+                      ...shippingInfo,
+                      address: e.target.value,
+                    })
                   }
                 />
               </div>
               <div>
-                <label htmlFor="city" className="block text-gray-700">City</label>
+                <label htmlFor="city" className="block">{`City`}</label>
                 <input
                   type="text"
                   id="city"
                   placeholder="Enter City Name"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={shippingInfo.city}
                   onChange={(e) =>
                     setShippingInfo({ ...shippingInfo, city: e.target.value })
@@ -140,12 +181,17 @@ const Cheakout = ({ setOrderfuntion }) => {
                 />
               </div>
               <div>
-                <label htmlFor="zip" className="block text-gray-700">Zip Code</label>
+                <label htmlFor="zip" className="block">{`Zip Code`}</label>
                 <input
                   type="number"
                   id="zip"
                   placeholder="Enter Zip Code"
                   className="w-full px-3 py-2 border"
+                  style={{
+                    borderColor: theme.borderColor,
+                    color: theme.textColor,
+                    backgroundColor: theme.secondaryBackgroundColor,
+                  }}
                   value={shippingInfo.zip}
                   onChange={(e) =>
                     setShippingInfo({ ...shippingInfo, zip: e.target.value })
@@ -156,12 +202,15 @@ const Cheakout = ({ setOrderfuntion }) => {
           </div>
 
           {/* Payment method */}
-          <div className="border p-2 mb-6">
+          <div
+            className="border p-2 mb-6"
+            style={{ borderColor: theme.borderColor }}
+          >
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between cursor-pointer"
               onClick={() => setPaymentToggle(!paymentToggle)}
             >
-              <h3 className="text-lg font-semibold mb-2">Payment Method</h3>
+              <h3 className="text-lg font-semibold mb-2">{`Payment Method`}</h3>
               {paymentToggle ? <FaAngleDown /> : <FaAngleUp />}
             </div>
             <div className={`space-y-4 ${paymentToggle ? "" : "hidden"}`}>
@@ -173,7 +222,7 @@ const Cheakout = ({ setOrderfuntion }) => {
                   checked={paymentMethod === "Cash on delivery"}
                   onChange={() => setPaymentMethod("Cash on delivery")}
                 />
-                <label htmlFor="cod" className="block text-gray-700 ml-2">
+                <label htmlFor="cod" className="block ml-2">
                   Cash on Delivery
                 </label>
               </div>
@@ -185,16 +234,24 @@ const Cheakout = ({ setOrderfuntion }) => {
                   checked={paymentMethod === "Debit Card"}
                   onChange={() => setPaymentMethod("Debit Card")}
                 />
-                <label htmlFor="debit" className="block text-gray-700 ml-2">
+                <label htmlFor="debit" className="block ml-2">
                   Debit Card
                 </label>
               </div>
             </div>
             {paymentMethod === "Debit Card" && (
-              <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                <h3 className="text-xl font-semibold mb-4">Debit Card Information</h3>
+              <div
+                className="p-4 rounded-lg mb-4"
+                style={{ backgroundColor: theme.secondaryBackgroundColor }}
+              >
+                <h3 className="text-xl font-semibold mb-4">
+                  Debit Card Information
+                </h3>
                 <div className="mb-4">
-                  <label htmlFor="cardNumber" className="block text-gray-700 font-semibold mb-2">
+                  <label
+                    htmlFor="cardNumber"
+                    className="block font-semibold mb-2"
+                  >
                     Card Number
                   </label>
                   <input
@@ -202,11 +259,19 @@ const Cheakout = ({ setOrderfuntion }) => {
                     id="cardNumber"
                     placeholder="Enter card number"
                     className="border p-2 w-full rounded"
+                    style={{
+                      borderColor: theme.borderColor,
+                      color: theme.textColor,
+                      backgroundColor: theme.secondaryBackgroundColor,
+                    }}
                     required
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="cardHolder" className="block text-gray-700 font-semibold mb-2">
+                  <label
+                    htmlFor="cardHolder"
+                    className="block font-semibold mb-2"
+                  >
                     Card Holder Name
                   </label>
                   <input
@@ -214,12 +279,20 @@ const Cheakout = ({ setOrderfuntion }) => {
                     id="cardHolder"
                     placeholder="Enter card holder name"
                     className="border p-2 w-full rounded"
+                    style={{
+                      borderColor: theme.borderColor,
+                      color: theme.textColor,
+                      backgroundColor: theme.secondaryBackgroundColor,
+                    }}
                     required
                   />
                 </div>
                 <div className="flex justify-between mb-4">
-                  <div className="w-1/2 me-2">
-                    <label htmlFor="expiryDate" className="block text-gray-700 font-semibold mb-2">
+                  <div className="w-1/2 mr-2">
+                    <label
+                      htmlFor="expiryDate"
+                      className="block font-semibold mb-2"
+                    >
                       Expiry Date
                     </label>
                     <input
@@ -227,11 +300,16 @@ const Cheakout = ({ setOrderfuntion }) => {
                       id="expiryDate"
                       placeholder="MM/YY"
                       className="border p-2 w-full rounded"
+                      style={{
+                        borderColor: theme.borderColor,
+                        color: theme.textColor,
+                        backgroundColor: theme.secondaryBackgroundColor,
+                      }}
                       required
                     />
                   </div>
-                  <div className="w-1/2">
-                    <label htmlFor="cvv" className="block text-gray-700 font-semibold mb-2">
+                  <div className="w-1/2 ml-2">
+                    <label htmlFor="cvv" className="block font-semibold mb-2">
                       CVV
                     </label>
                     <input
@@ -239,6 +317,11 @@ const Cheakout = ({ setOrderfuntion }) => {
                       id="cvv"
                       placeholder="CVV"
                       className="border p-2 w-full rounded"
+                      style={{
+                        borderColor: theme.borderColor,
+                        color: theme.textColor,
+                        backgroundColor: theme.secondaryBackgroundColor,
+                      }}
                       required
                     />
                   </div>
@@ -247,48 +330,38 @@ const Cheakout = ({ setOrderfuntion }) => {
             )}
           </div>
         </div>
-
-        {/* ORDER SUMMARY */}
-        <div className="md:w-1/3 bg-white p-6 rounded-lg shadow-md border">
-          <h3 className="text-lg font-semibold mb-4">ORDER SUMMARY</h3>
-          <div className="space-y-4">
-            {cart.products.map((product) => (
-              <div
-                key={product.id}
-                className="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-start"
-              >
-                <div className="flex items-center w-full sm:w-auto">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-16 h-16 object-contain rounded"
-                  />
-                  <div className="ml-4 flex flex-col text-center sm:text-left">
-                    <h4 className="text-md font-semibold mb-1">{product.name}</h4>
-                    <p className="text-gray-600">
-                      ${product.price} x {product.quantity}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-gray-800 mt-2 sm:mt-0 sm:ml-auto">
-                  ${product.price * product.quantity}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 border-t pt-4">
-            <div className="flex justify-between">
-              <span>Total Price:</span>
-              <span className="font-semibold">${cart.totalPrice.toFixed(2)}</span>
-            </div>
-          </div>
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-          <button
-            className="w-full bg-red-600 text-white py-2 mt-3 hover:bg-red-800"
-            onClick={handleOrder}
+           {/* order summary  */}
+        <div className="md:w-1/3 ">
+          <div
+            className="border p-4 rounded-lg"
+            style={{ backgroundColor: theme.secondaryBackgroundColor }}
           >
-            Place Order
-          </button>   
+            <h3 className="text-xl font-semibold mb-4 ">Order Summary</h3>
+            <div className="flex justify-between mb-2">
+              <span>Items Total:</span>
+              <span>${cart.totalPrice.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between mb-2">
+              <span>Shipping:</span>
+              <span>Free</span>
+            </div>
+            <div className="flex justify-between mb-4">
+              <span>Total:</span>
+              <span>${cart.totalPrice.toFixed(2)}</span>
+            </div>
+            <button
+              onClick={handleOrder}
+              className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              style={{
+                backgroundColor: isHoveredLogin ? theme.hoverColor : theme.accentColor,
+              }}
+              onMouseEnter={() =>subscribe(true)}
+              onMouseLeave={() =>subscribe(false)}
+            >
+              Place Order
+            </button>
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+          </div>
         </div>
       </div>
     </div>

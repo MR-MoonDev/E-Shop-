@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ChangeAddress = ({ setAddress, setIsModalOpen }) => {
-  const [newAddress, setNewAddress] = useState('');
+  const [newAddress, setNewAddress] = useState("");
 
   const onClose = () => {
     setAddress(newAddress);
@@ -9,8 +9,8 @@ const ChangeAddress = ({ setAddress, setIsModalOpen }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission
-    onClose(); // Save address and close modal
+    e.preventDefault();
+    onClose();
   };
 
   return (
