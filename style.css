@@ -1,0 +1,8 @@
+.hover-effect {
+    transition: background-color 0.3s ease;
+  }
+  
+  .hover-effect:hover {
+    background-color: #b23c3c; /* Customize this color for the hover effect */
+  }
+  

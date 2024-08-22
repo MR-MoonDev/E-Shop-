@@ -3,10 +3,12 @@ import { footer_Icons } from "../Icons/Footer_Icons";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import Contact from "./Contact";
+import { useTheme } from '../context/ThemeContext'; // Adjust path as needed
 
 const Footer = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [isHoveredLogin,subscribe] = useState(false);
 
   const openContactModal = () => {
     setIsContactOpen(true);
@@ -21,6 +23,7 @@ const Footer = () => {
       alert("Please enter a valid email address.");
     }
   };
+  const { theme } = useTheme(); // Get theme from context
 
   return (
     <>
@@ -97,7 +100,12 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="bg-red-600 text-white px-4 py-2 rounded-r-lg border border-gray-500"
+                className="text-white px-4 py-2 rounded-r-lg border border-gray-500"
+                style={{
+                  backgroundColor: isHoveredLogin ? theme.hoverColor : theme.accentColor,
+                }}
+                onMouseEnter={() =>subscribe(true)}
+                onMouseLeave={() =>subscribe(false)}
               >
                 Subscribe
               </button>
